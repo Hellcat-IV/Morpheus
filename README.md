@@ -39,7 +39,8 @@ Everything, as much as we can 🙂, developed as part of the lab — from resear
 ---
 
 ## 🧭 Roadmap
-Soon...
+
+![image](https://github.com/user-attachments/assets/af224539-293c-4ee8-867c-ae3d25820409)
 
 ---
 
