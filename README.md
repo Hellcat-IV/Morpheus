@@ -10,7 +10,8 @@ Everything, as much as we can 🙂, developed as part of the lab — from resear
 
 - 🌐 **Web Hosting**  
 - 🧪 **Pentest Labs**  
-- 🐞 **Vulnerability Research**  
+- 🐞 **Vulnerability Research**
+- 🔎 **Forensic/CTI Analysis**
 - </> **Cyber R&D**
 
 ---
