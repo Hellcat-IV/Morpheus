@@ -32,7 +32,7 @@ Sentinel project is a python script which can provide first layer of security as
 
 Run the auditor on a PHP project directory:
 ```bash
-python3 sentinel.py /project/path/file.php
+python3 sentinel.py file.php
 ```
 
 ## Roadmap
