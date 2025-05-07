@@ -36,7 +36,7 @@ vuln_patterns = {
         r"(mysqli_query|mysql_query|pg_query)\s*\(.*?\$_(GET|POST|REQUEST|COOKIE|SERVER)\b",
         r"\$db->query\s*\(.*?\$_(GET|POST|REQUEST|COOKIE)\b",
         r"(?i)(SELECT|INSERT|UPDATE|DELETE).*?%.*?[\"']",
-        r"(?i)\b(SELECT|INSERT|UPDATE|DELETE|REPLACE|FROM|WHERE|LIKE|ORDER BY|GROUP BY)\b.*(['$%])",
+        r"(?i)(?:=|\.=)\s*['\"].*\b(SELECT|INSERT|UPDATE|DELETE|REPLACE|FROM|WHERE|LIKE|ORDER\s+BY|GROUP\s+BY)\b.*['$%]",
     ],
     "Information Leak": [
         r"\bphpinfo\s*\("

@@ -45,35 +45,37 @@ def _r():
   init()
   
   global fnme
+
+  dirlistfiles = []
   
   try:
     fnme = sys.argv[1]
-    
-    if not "." in fnme:
-        print("Usage of project folder")
-        dirlistfiles = []
-        for file in os.listdir(os.getcwd() + '/' + fnme):
-            # debug print('FFF : ' + file)
-            if file.endswith('.php'):
-                # debug print('FFF PHP OUI : ' + file)
-                dirlistfiles.append(fnme + '/' + file)
-                # debug print("NEW DIRLISTFILES : " + str(dirlistfiles))
-
     #print("Filename : ", str(fnme))
   except Exception as e:
       print(str(e.args))
     #print("Usage: " + str(__file__).split("/")[-1] + " filename.php - for single script scan")
     #print("Usage: " + str(__file__).split("/")[-1] + " foldername   - for project folder scan")
     #exit(1)
-    
+
+  print("Filename : ", str(fnme))
+  if not 'php' in fnme:
+      print("Usage of project folder")
+      for file in os.listdir(os.getcwd() + '/' + fnme):
+          #print('FFF : ' + file)
+          if file.endswith('.php'):
+              #print('FFF PHP OUI : ' + file)
+              dirlistfiles.append(fnme + '/' + file)
+              #print("NEW DIRLISTFILES : " + str(dirlistfiles))
+
   try:
+    #print("DIRLISTFILES : " + str(dirlistfiles))
     if len(dirlistfiles) > 1:
         for fil_e in dirlistfiles:
             search_for(fil_e)
     else:
         search_for(fnme)
   except Exception as e:
-    print(f'{Fore.YELLOW}Error: {str(e.args)}{Style.RESET_ALL}')
+    print(f'{Fore.YELLOW}Error: {str(e)}{Style.RESET_ALL}')
 
 if __name__ == '__main__':
   _r()
