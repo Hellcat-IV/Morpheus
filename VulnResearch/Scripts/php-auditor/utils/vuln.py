@@ -32,11 +32,11 @@ vuln_patterns = {
         r"\b[0-9a-fA-F]{64}\b"  # HMAC/SHA-256 secrète
     ],
     "SQL Injection": [
-        # SQL with user request included
         r"\$sql\s*=.*?\$_(GET|POST|REQUEST|COOKIE)\b.*?;",
-        r"(mysqli_query|mysql_query|pg_query)\s*\(.*?\$_(GET|POST|REQUEST|COOKIE|SERVER)\b"
+        r"(mysqli_query|mysql_query|pg_query)\s*\(.*?\$_(GET|POST|REQUEST|COOKIE|SERVER)\b",
         r"\$db->query\s*\(.*?\$_(GET|POST|REQUEST|COOKIE)\b",
-        
+        r"(?i)(SELECT|INSERT|UPDATE|DELETE).*?%.*?[\"']",
+        r"(?i)\b(SELECT|INSERT|UPDATE|DELETE|REPLACE|FROM|WHERE|LIKE|ORDER BY|GROUP BY)\b.*(['$%])",
     ],
     "Information Leak": [
         r"\bphpinfo\s*\("

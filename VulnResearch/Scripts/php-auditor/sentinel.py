@@ -20,21 +20,21 @@ def search_reg(_path, reg_val, vuln_tested): # searching for vulnerability paylo
 
                   if _line[0] == '/': # if the line is commentary
                     highlighted_line = _line.replace(match.group(), f"{Fore.BLUE}{match.group()}{Style.RESET_ALL}")
-                    print(f"{Fore.BLUE}[0]{Style.RESET_ALL} {Fore.BLUE}Found Commentary{Style.RESET_ALL} on line {i+1}: {highlighted_line}")
+                    print(f"{Fore.BLUE}[0]{Style.RESET_ALL} [{_path.split('/')[-1]}] Found {Fore.BLUE}Commentary{Style.RESET_ALL} on line {i+1}: {highlighted_line}")
 
                   elif (vuln_tested == 'Command Execution') or (vuln_tested == 'Code Execution'):
 
                     if not "$_" in _line: # if variables are local and not dynamic as user requets
                       highlighted_line = _line.replace(match.group(), f"{Fore.YELLOW}{match.group()}{Style.RESET_ALL}")
-                      print(f"{Fore.YELLOW}[1]{Style.RESET_ALL} Found {Fore.YELLOW}{vuln_tested}{Style.RESET_ALL} possible on line {i+1}: {highlighted_line}")
+                      print(f"{Fore.YELLOW}[1]{Style.RESET_ALL} [{_path.split('/')[-1]}] Found {Fore.YELLOW}{vuln_tested}{Style.RESET_ALL} possible on line {i+1}: {highlighted_line}")
 
                   else:
                     highlighted_line = _line.replace(match.group(), f"{Fore.RED}{match.group()}{Style.RESET_ALL}")
-                    print(f"{Fore.RED}[2]{Style.RESET_ALL} Found {Fore.RED}{vuln_tested}{Style.RESET_ALL} on line {i+1}: {highlighted_line}")
+                    print(f"{Fore.RED}[2]{Style.RESET_ALL} [{_path.split('/')[-1]}] Found {Fore.RED}{vuln_tested}{Style.RESET_ALL} on line {i+1}: {highlighted_line}")
 
 def search_for(filename): # rotating lines for differents attacks method
     for vuln_type, patterns in vuln_patterns.items():
-        # print(f"Searching for {vuln_type}")
+        #print(f"Searching for {vuln_type}")
         for pattern in patterns:
             file_path = os.path.join(os.getcwd(), filename)
             search_reg(file_path, pattern, vuln_type)
@@ -48,13 +48,30 @@ def _r():
   
   try:
     fnme = sys.argv[1]
-    print("Filename : ", str(fnme))
-  except:
-    print("Usage: " + str(__file__) + " filename.php")
-    exit(1)
+    
+    if not "." in fnme:
+        print("Usage of project folder")
+        dirlistfiles = []
+        for file in os.listdir(os.getcwd() + '/' + fnme):
+            # debug print('FFF : ' + file)
+            if file.endswith('.php'):
+                # debug print('FFF PHP OUI : ' + file)
+                dirlistfiles.append(fnme + '/' + file)
+                # debug print("NEW DIRLISTFILES : " + str(dirlistfiles))
+
+    #print("Filename : ", str(fnme))
+  except Exception as e:
+      print(str(e.args))
+    #print("Usage: " + str(__file__).split("/")[-1] + " filename.php - for single script scan")
+    #print("Usage: " + str(__file__).split("/")[-1] + " foldername   - for project folder scan")
+    #exit(1)
     
   try:
-    search_for(fnme)
+    if len(dirlistfiles) > 1:
+        for fil_e in dirlistfiles:
+            search_for(fil_e)
+    else:
+        search_for(fnme)
   except Exception as e:
     print(f'{Fore.YELLOW}Error: {str(e.args)}{Style.RESET_ALL}')
 
