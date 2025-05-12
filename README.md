@@ -43,6 +43,12 @@ Everything, as much as we can 🙂, developed as part of the lab — from resear
 
 ![image](https://github.com/user-attachments/assets/a470b283-8635-4f7b-9875-a31885080228)
 
+Short-term Roadmap:
+1. Restrict SSH connections on lab for root with key + 2FA Proxmox + Create last users
+2. Install OS on Raspberry + Setup routing & basics firewall rules
+3. Reset NAS software + create users
+4. Uptime checker + alerting for server (cloud-based server)
+
 ---
 
 ## 🧑‍💻 Contributing
