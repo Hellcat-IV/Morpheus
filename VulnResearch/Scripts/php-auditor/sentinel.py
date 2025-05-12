@@ -58,12 +58,12 @@ def _r():
     #exit(1)
 
   print("Filename : ", str(fnme))
-  if not 'php' in fnme:
+  if not '.php' in fnme:
       print("Usage of project folder")
       for file in os.listdir(os.getcwd() + '/' + fnme):
           #print('FFF : ' + file)
           if file.endswith('.php'):
-              #print('FFF PHP OUI : ' + file)
+              print('FFF PHP OUI : ' + file)
               dirlistfiles.append(fnme + '/' + file)
               #print("NEW DIRLISTFILES : " + str(dirlistfiles))
 
